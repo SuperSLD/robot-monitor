@@ -83,7 +83,7 @@ compose.desktop {
             )
 
             packageName = "Monitor"
-            packageVersion = "1.0.2"
+            packageVersion = "1.0.3"
         }
     }
 }
