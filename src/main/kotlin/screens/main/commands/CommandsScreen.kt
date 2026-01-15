@@ -100,7 +100,7 @@ fun CommandsScreenContent(
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
 
-                items(state.stack) { item ->
+                items((state.stack + (monitorState?.logs ?: emptyList()))) { item ->
                     Text(
                         text = item.second,
                         color = item.first,
@@ -124,9 +124,9 @@ fun CommandsScreenContent(
         }
     }
 
-    LaunchedEffect(state.stack.size) {
-        if (state.stack.isNotEmpty()) {
-            listState.animateScrollToItem(state.stack.lastIndex)
+    LaunchedEffect((state.stack + (monitorState?.logs ?: emptyList())).size) {
+        if ((state.stack + (monitorState?.logs ?: emptyList())).isNotEmpty()) {
+            listState.animateScrollToItem((state.stack + (monitorState?.logs ?: emptyList())).lastIndex)
         }
     }
 }

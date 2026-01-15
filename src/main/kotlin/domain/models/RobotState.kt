@@ -1,11 +1,13 @@
 package domain.models
 
+import androidx.compose.ui.graphics.Color
 import domain.socket.Connection
 
 data class MonitorState(
     val connection: Connection? = null,
     val robotState: RobotState? = null,
     val stateList: List<RobotState> = emptyList(),
+    val logs: List<Pair<Color, String>> = emptyList(),
 )
 
 data class RobotState(

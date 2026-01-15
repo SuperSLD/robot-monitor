@@ -58,10 +58,12 @@ class MonitorStateConnection: IMonitorStateConnection() {
             while (true) {
                 try {
                     if (isConnectonClosed() && ip != null && port != null) {
-                        println("Try connect to $ip:$port")
+                        log("Try connect to $ip:$port")
                         openConnection(ip!!, port!!)
                     }
-                } catch (_: Exception) {}
+                } catch (ex: Exception) {
+                    log(ex.message.toString(), CommandResponse.ERROR)
+                }
                 delay(1000)
             }
         }
@@ -81,6 +83,8 @@ class MonitorStateConnection: IMonitorStateConnection() {
 
         val receiveChannel = socket?.openReadChannel()
         sendChannel = socket?.openWriteChannel(autoFlush = true)
+
+        log("success connected", CommandResponse.SUCCESS)
 
         receiveMessageJob = GlobalScope.async {
             while (true) {
@@ -159,6 +163,16 @@ class MonitorStateConnection: IMonitorStateConnection() {
 
     override fun onCommandResponse(callback: (CommandResponse) -> Unit) {
         onCommandResponseCallback = callback
+    }
+
+    private suspend fun log(text: String, type: Int = CommandResponse.DEFAULT) {
+        println(text)
+        val log = CommandResponse(text, type)
+        _uiState.emit(
+            _uiState.value.copy(
+                logs = _uiState.value.logs + (log.color() to log.text)
+            )
+        )
     }
 }
 
