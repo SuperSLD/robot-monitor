@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import di.provideDomainModule
 import di.provideViewModelModule
@@ -39,8 +40,7 @@ fun main() = application {
     ) {
         Column(modifier = Modifier.fillMaxSize().background(Colors.backgroundSecondary)) {
 
-            // --- ТУЛБАР ---
-            WindowDraggableArea { // Всё, что внутри этого блока, позволяет тащить окно
+            WindowDraggableArea {
                 Surface(
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                     color = Colors.backgroundSecondary,
@@ -54,11 +54,26 @@ fun main() = application {
 
                         Row {
                             IconButton(
-                                onClick = { },
+                                onClick = { window.isMinimized = true },
                                 modifier = Modifier.size(30.dp)
                             ) {
                                 Text("—", color = Colors.textPrimary)
                             }
+
+                            IconButton(
+                                onClick = {
+                                    window.placement = if (window.placement == WindowPlacement.Maximized) {
+                                        WindowPlacement.Floating
+                                    } else {
+                                        WindowPlacement.Maximized
+                                    }
+                                },
+                                modifier = Modifier.size(30.dp)
+                            ) {
+                                val icon = if (window.placement == WindowPlacement.Maximized) "❐" else "☐"
+                                Text(icon, color = Colors.textPrimary)
+                            }
+
                             IconButton(
                                 onClick = { exitApplication() },
                                 modifier = Modifier.size(30.dp)

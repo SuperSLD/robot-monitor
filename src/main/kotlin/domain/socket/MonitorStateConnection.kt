@@ -54,7 +54,7 @@ class MonitorStateConnection: IMonitorStateConnection() {
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun reconnectCycle() {
-        reconnectJob = GlobalScope.async {
+        reconnectJob = GlobalScope.async(Dispatchers.IO) {
             while (true) {
                 try {
                     if (isConnectonClosed() && ip != null && port != null) {
@@ -86,7 +86,7 @@ class MonitorStateConnection: IMonitorStateConnection() {
 
         log("success connected", CommandResponse.SUCCESS)
 
-        receiveMessageJob = GlobalScope.async {
+        receiveMessageJob = GlobalScope.async(Dispatchers.IO) {
             while (true) {
                 val line = receiveChannel?.readUTF8Line()
                 if (line != null) {
