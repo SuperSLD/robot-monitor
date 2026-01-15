@@ -64,7 +64,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "KotlinJvmComposeDesktopApplication"
+            packageName = "Monitor"
             packageVersion = "1.0.0"
         }
     }
