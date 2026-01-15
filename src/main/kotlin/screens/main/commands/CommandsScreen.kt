@@ -100,7 +100,7 @@ fun CommandsScreenContent(
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
 
-                items((state.stack + (monitorState?.logs ?: emptyList()))) { item ->
+                items((monitorState?.logs ?: emptyList()) + state.stack) { item ->
                     Text(
                         text = item.second,
                         color = item.first,

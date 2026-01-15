@@ -64,8 +64,26 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+
+            modules(
+                // Базовые модули
+                "java.desktop",
+                "java.management",
+                "java.naming",
+                "java.scripting",
+                "java.sql",
+                "java.xml",
+
+                // Сеть и безопасность (Критично для Ktor)
+                "java.net.http",
+                "jdk.crypto.ec",
+
+                // Системные
+                "jdk.unsupported"
+            )
+
             packageName = "Monitor"
-            packageVersion = "1.0.0"
+            packageVersion = "1.0.2"
         }
     }
 }
