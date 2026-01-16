@@ -16,6 +16,7 @@ import domain.models.MonitorState
 import kotlinx.coroutines.flow.SharedFlow
 import org.koin.compose.viewmodel.koinViewModel
 import screens.main.gyroscope.GyroscopeSummary
+import screens.main.servo.ServoSummary
 
 @Composable
 fun DashboardScreen(
@@ -64,7 +65,7 @@ fun DashboardScreenContent(
         ) {
 
             GyroscopeSummary(monitorState, showPlot = true)
-
+            ServoSummary(monitorState)
         }
     }
 }

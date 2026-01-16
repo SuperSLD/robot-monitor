@@ -16,6 +16,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import screens.main.commands.CommandsScreen
 import screens.main.dashboard.DashboardScreen
 import screens.main.gyroscope.GyroscopeScreen
+import screens.main.servo.ServoScreen
 import theme.Colors
 import theme.MonitorText
 
@@ -115,7 +116,7 @@ fun MainScreenContent(
                     }
 
                     Destinations.SERVO -> {
-                        //LibraryTabNavHost()
+                        ServoScreen(monitorState = state.monitorState)
                     }
 
                     Destinations.COMMANDS -> {

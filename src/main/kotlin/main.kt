@@ -1,6 +1,8 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.window.WindowDraggableArea
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
@@ -85,7 +87,14 @@ fun main() = application {
                 }
             }
 
-            Box(Modifier.fillMaxSize()) {
+            Box(Modifier
+                .fillMaxSize()
+                .border(
+                    width = 1.dp,
+                    color = Colors.backgroundSecondary,
+                    shape = RoundedCornerShape(16.dp),
+                )
+            ) {
                 KoinApplication(application = {
                     modules(
                         listOf(

@@ -7,6 +7,7 @@ import screens.main.MainViewModel
 import screens.main.commands.CommandsViewModel
 import screens.main.dashboard.DashboardViewModel
 import screens.main.gyroscope.GyroscopeViewModel
+import screens.main.servo.ServoViewModel
 import screens.splash.SplashViewModel
 
 val provideViewModelModule = module {
@@ -16,4 +17,5 @@ val provideViewModelModule = module {
     viewModelOf(::DashboardViewModel)
     viewModelOf(::GyroscopeViewModel)
     viewModelOf(::CommandsViewModel)
+    viewModelOf(::ServoViewModel)
 }

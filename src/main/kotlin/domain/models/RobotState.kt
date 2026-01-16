@@ -13,6 +13,7 @@ data class MonitorState(
 data class RobotState(
     val mpuState: MpuState?,
     val mpu6050: MpuResult?,
+    val servoState: ServoState?,
     val time: Long
 )
 
@@ -42,4 +43,14 @@ data class MpuResult(
     val angleX: Double,
     val angleY: Double,
     val angleZ: Double,
+)
+
+data class ServoState(
+    val servoMotors: List<ServoMotor>,
+)
+
+data class ServoMotor(
+    val name: String,
+    val humanName: String,
+    val currentAngle: Double,
 )
